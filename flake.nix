@@ -1,6 +1,6 @@
 {
   description = "Simple NixOS VMs";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.flake-utils.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -66,7 +66,7 @@
             let
               cleanupScript = name: persistState: pkgs.writeScript "cleanup" ''
                 #!${pkgs.bash}/bin/bash
-                ${if persistState then "" else "rm /var/lib/simple-vms/${name}/nixos.qcow2 || true"};
+                ${if persistState then "" else "rm /var/lib/simple-vms/${name}/nixos.qcow2 || true;"}
               '';
               mkService = name: cfg: {
                 enable = cfg.autoStart;
